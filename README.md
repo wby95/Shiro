@@ -2,7 +2,7 @@
 ### 目录
 
 1. [ShiroHello](#ShiroHello)
-    - [ShiroHello的搭建](#ShiroHello的搭建)
+    - [ShiroHello的搭建（身份认证）](#ShiroHello的搭建)
 2. [Introduction](#introduction)
 	- [简介](#简介)
     - [三大组件](#三大组件应用)
@@ -10,6 +10,9 @@
 3. [认证流程](#认证流程)
     
 4. [链接数据库](#链接数据库配置)
+
+
+5. [权限认证](#权限认证)
 
 ## ShiroHello
 #### 一、ShiroHello的搭建
@@ -77,7 +80,7 @@ public class HelloWorld {
   | 5. 自定义Realm 方法，从数据库中获用户安全数据|
 
 
- ###  四、链接数据库配置
+ ##  四、链接数据库配置
 
 >表结构见sql目录 
 
@@ -95,6 +98,40 @@ securityManager.realms=$jdbcRealm
 
 ```
 
+ 
+ 
+ ## 五、权限认证
+ 
+ 
+ ![权限认证](./img/权限认证的三个方法.PNG)
+ ```$xslt
+shiro_realm.ini
+[users]
+wby=123,role1
+hrb=123,role1,role2
+
+  public  void testRole() {
+        Subject currenUser=ShiroUtil.login("classpath:shiro_role.ini","wby","123");
+        //判断用户是否有该角色
+        System.out.println(currenUser.hasRole("role1")+""+ currenUser.hasRole("role2"));
+        System.out.println();
+        //底层for循环调用hasRole
+        boolean[] results=currenUser.hasRoles(Arrays.asList("role1","role2","role3"));
+        System.out.println(results[0]);
+        System.out.println(results[1]);
+        System.out.println(results[2]);
+        //只要一个不存在就是false
+        boolean result=currenUser.hasAllRoles(Arrays.asList("role1","role2","role3"));
+        System.out.println(result);
+    }
+
+
+
+
+
+
+```
+ 
  
 
  
