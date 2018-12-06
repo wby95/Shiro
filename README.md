@@ -9,6 +9,8 @@
  
 3. [认证流程](#认证流程)
     
+4. [链接数据库](#链接数据库配置)
+
 ## ShiroHello
 #### 一、ShiroHello的搭建
 > 1、读取配置文件，初始化工厂
@@ -51,7 +53,7 @@ public class HelloWorld {
 ##  二、Introduction
 #### 简介
 > Apache Shiro是一个强大且易用的Java安全框架,执行身份验证、授权、密码和会话管理。使用Shiro的易于理解的API,您可以快速、轻松地获得任何应用程序,从最小的移动应用程序到最大的网络和企业应用程序。
-![shiro.PNG](./img/shiro.PNG)
+![shiro.PNG](img/shiro.PNG)
 
 #### 三大组件应用
 
@@ -64,7 +66,7 @@ public class HelloWorld {
  
  > 认证/授权基本步骤：
  
-![shiro.PNG](./img/认证过程.PNG)
+![shiro.PNG](img/认证过程.PNG)
  
   |认证/授权基本步骤|
   | :-----   | 
@@ -75,7 +77,23 @@ public class HelloWorld {
   | 5. 自定义Realm 方法，从数据库中获用户安全数据|
 
 
-    
+ ###  四、链接数据库配置
+
+>表结构见sql目录 
+
+```
+[main]
+jdbcRealm=org.apache.shiro.realm.jdbc.JdbcRealm
+dataSource=com.mchange.v2.c3p0.ComboPooledDataSource
+dataSource.driverClass=com.mysql.jdbc.Driver
+dataSource.jdbcUrl=jdbc:mysql://localhost:3306/db_shiro
+dataSource.user=root
+dataSource.password=root
+jdbcRealm.dataSource=$dataSource
+securityManager.realms=$jdbcRealm
+
+
+```
 
  
 
