@@ -169,7 +169,7 @@ hrb=123,role1,role2
 
  |@RequiresAuthentication|@RequiresGuest|@RequiresPermissions("account:create")|@RequiresRoles("administrator")|@RequiresUser RequiresUser|
  | :-----   |  :-----   |  :-----   |  :-----   |   :-----   | 
- |要求当前 Subject 已经在当前的 session 中被验证通过才能被访问或调用。|要求当前的 Subject 是一个"guest"，也就是说，他们必须是在之前的 session 中没有被验证或被记住才能被访问或调用|) 要求当前的 Subject 被允许一个或多个权限，以便执行注解的方法|) 要求当前的 Subject 被允许一个或多个权限，以便执行注解的方法|) 要求当前的 Subject 被允许一个或多个权限，以便执行注解的方法|
+ |要求当前 Subject 已经在当前的 session 中被验证通过才能被访问或调用。|要求当前的 Subject 是一个"guest"，也就是说，他们必须是在之前的 session 中没有被验证或被记住才能被访问或调用| 要求当前的 Subject 被允许一个或多个权限，以便执行注解的方法| 要求当前的 Subject 被允许一个或多个权限，以便执行注解的方法| 要求当前的 Subject 被允许一个或多个权限，以便执行注解的方法|
 
  
  
