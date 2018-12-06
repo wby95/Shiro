@@ -15,6 +15,8 @@
 5. [权限认证](#权限认证)
     - [编程方式授权](#编程方式授权)
     - [注解方式授权](#注解方式授权)
+    - [Jsp 标签授权](#Jsp标签授权)
+   
 
 
 ## ShiroHello
@@ -173,5 +175,26 @@ hrb=123,role1,role2
 
  
  
+ 
+ > ### Jsp 标签授权
+ 
+ > 页面先引入
+ ```
+   <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
+ ```
+|Guest 标签| User 标签|  Authenticated 标签 |
+ | :-----   | :-----   | :-----   | 
+|用户没有身份验证时显示相应信息，即游客访问信息|用户已经身份验证,记住我登录后显示相应的信息|用户已经身份验证通过，即 Subject.login 登录成功，不是记住我登录的|
+
+|notAuthenticated 标签| principal 标签|  hasRole 标签 |
+ | :-----   | :-----   | :-----   | 
+ |用户没有身份验证通过，即没有调用 Subject.login 进行登录，包括记住我自动登录的也属于未进行身份验证。|显示用户身份信息，默认调用 Subject.getPrincipal()获取，即 Primary Principal|如果当前 Subject 有角色将显示 body 体内容|
+
+
+ |lacksRole 标签| hasAnyRoles 标签|  hasPermission 标签 |lacksPermission 标签|
+  | :-----   | :-----   | :-----   |  :-----   | 
+|标签 如果当前 Subject 没有角色将显示 body 体内容|如果当前 Subject 有任意一个角色（或的关系）将显示 body 体内容| 如果当前 Subject 有权限将显示 body 体内容|如果当前 Subject 没有权限将显示 body 体内容|
+
+
  
  
